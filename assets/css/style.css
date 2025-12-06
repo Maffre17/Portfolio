@@ -687,10 +687,6 @@ body {
         justify-content: center;
     }
 
-    .hero__list-link {
-        display: none;
-    }
-
     .hero__button {
         display: flex;
         margin: 2rem 0;
@@ -769,3 +765,4 @@ body {
     }
 
 }
+
