@@ -1,7 +1,7 @@
 document.querySelectorAll('.header__button-cta').forEach(btn => {
-    btn.onclick = () => {
-        document.querySelector(".contact-me").scrollIntoView({ behavior: "smooth" });
-    };
+  btn.onclick = () => {
+    document.querySelector(".contact-me").scrollIntoView({ behavior: "smooth" });
+  };
 });
 const menu = document.querySelector('.header__menu-hamburger');
 const nav = document.querySelector('.header__nav');
@@ -15,7 +15,7 @@ menu.addEventListener('click', (e) => {
   nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
 });
 
-// Listener para fechar ao clicar fora — mas só quando for mobile
+
 function documentClickHandler(e) {
   if (!isMobile()) return;
 
@@ -28,13 +28,10 @@ function documentClickHandler(e) {
 
 document.addEventListener('click', documentClickHandler);
 
-// Opcional — se quiser que ao redimensionar a janela também remova o listener, ou force o nav a abrir/fechar conforme desktop/mobile
 window.addEventListener('resize', () => {
-  // Se passou para desktop, garanta nav visível ou estilo normal
   if (!isMobile()) {
-    nav.style.display = ''; // ou 'flex', dependendo do teu CSS
+    nav.style.display = '';
   } else {
     nav.style.display = 'none';
   }
 });
-
