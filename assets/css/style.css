@@ -82,6 +82,10 @@ body {
     padding: .8rem 2rem;
     border-radius: 30px;
 }
+.header__button-cta:hover, .projects__button:hover, .projects__item-button:hover{
+    background-color: #1B974A;
+    transform: scale(1.1);
+}
 
 .header__menu-hamburger {
     display: none;
@@ -765,4 +769,5 @@ body {
     }
 
 }
+
 
