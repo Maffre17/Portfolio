@@ -1,28 +1,34 @@
-document.querySelectorAll('.header__button-cta').forEach(btn => {
-    btn.onclick = () => {
-        document.querySelector(".contact-me").scrollIntoView({ behavior: "smooth" });
-    };
-});
-
 const menu = document.querySelector('.header__menu-hamburger');
 const nav = document.querySelector('.header__nav');
 
-// Toggle do menu
+function isMobile() {
+  return window.matchMedia("(max-width: 42.5rem)").matches;
+}
+
 menu.addEventListener('click', (e) => {
-    e.stopPropagation(); 
-    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+  e.stopPropagation();
+  nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
 });
 
-// Fechar ao clicar fora **somente em telas menores que 42.5rem**
-document.addEventListener('click', (e) => {
-    const isMobile = window.matchMedia("(max-width: 42.5rem)").matches;
+// Listener para fechar ao clicar fora — mas só quando for mobile
+function documentClickHandler(e) {
+  if (!isMobile()) return;
 
-    if (!isMobile) return; // Se não for mobile, não faz nada
+  const clickForaDoNav = !nav.contains(e.target);
+  const clickNoMenu = menu.contains(e.target);
+  if (clickForaDoNav && !clickNoMenu) {
+    nav.style.display = 'none';
+  }
+}
 
-    const clickForaDoNav = !nav.contains(e.target);
-    const clickNoMenu = menu.contains(e.target);
+document.addEventListener('click', documentClickHandler);
 
-    if (clickForaDoNav && !clickNoMenu) {
-        nav.style.display = 'none';
-    }
+// Opcional — se quiser que ao redimensionar a janela também remova o listener, ou force o nav a abrir/fechar conforme desktop/mobile
+window.addEventListener('resize', () => {
+  // Se passou para desktop, garanta nav visível ou estilo normal
+  if (!isMobile()) {
+    nav.style.display = ''; // ou 'flex', dependendo do teu CSS
+  } else {
+    nav.style.display = 'none';
+  }
 });
